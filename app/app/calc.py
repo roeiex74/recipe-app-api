@@ -1,5 +1,5 @@
 """
- Simple calculation class 
+ Simple calculation class
  For test class domnstration purposes
 """
 
