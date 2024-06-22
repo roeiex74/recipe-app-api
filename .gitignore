@@ -3,6 +3,16 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Python
+app/__pycache__
+app/*/__pycache__
+app/*/*/__pycache__
+app/*/*/*/__pycache__
+.env/
+.venv/
+recipe-app-venv/
+.recipe-app-venv/
+
 # C extensions
 *.so
 
