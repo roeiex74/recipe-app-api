@@ -22,7 +22,8 @@ class UserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         """Update and return a user with updated and validated data."""
         password = validated_data.pop("password", None)
-        # we retrieve the password from validated data, and remove it afterwards.
+        # we retrieve the password from validated data, and remove
+        # it afterwards.
         # making it optional, since we accept later none value on the update
         user = super().update(instance=instance, validated_data=validated_data)
         if password:
@@ -47,7 +48,9 @@ class AuthTokenSerializer(serializers.Serializer):
         email = attrs.get("email")
         password = attrs.get("password")
         user = authenticate(
-            request=self.context.get("request"), username=email, password=password
+            request=self.context.get("request"),
+            username=email,
+            password=password,
         )
         if not user:
             msg = _("Unable to authenticate with provided user credentials.")

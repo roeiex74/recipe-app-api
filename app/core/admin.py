@@ -14,7 +14,10 @@ class UserAdmin(BaseUserAdmin):
     ordering = ["id"]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser")}),
+        (
+            _("Permissions"),
+            {"fields": ("is_active", "is_staff", "is_superuser")},
+        ),
         (_("Dates"), {"fields": ("last_login",)}),
     )
     readonly_fields = ["last_login"]
