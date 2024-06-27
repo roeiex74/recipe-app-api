@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
     BaseUserManager,
 )
+from django.conf import settings
 
 
 # Create your models here.
@@ -35,7 +36,27 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    # Assign the custom userManager we have created - it has custom create_user method
+    # Assign the custom userManager we have created -
+    # it has custom create_user method
     objects = UserManager()
     # Field for authentication
     USERNAME_FIELD = "email"
+
+
+class Recipe(models.Model):
+    # user=user,
+    #         title="Sample Recipe",
+    #         time_minutes=5,
+    #         price=Decimal("5.50"),
+    #         description="Sample recipe short description",
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=255)
+    time_minutes = models.IntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    description = models.TextField(blank=True)
+    link = models.CharField(max_length=255, blank=True)
+
+    def __str__(self) -> str:
+        return self.title
