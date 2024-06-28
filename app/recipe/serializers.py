@@ -1,4 +1,4 @@
-""" 
+"""
 Serializers for recipes API.
 """
 

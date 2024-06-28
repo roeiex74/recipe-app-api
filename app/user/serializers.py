@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         # we retrieve the password from validated data, and remove
         # it afterwards.
         # making it optional, since we accept later none value on the update
-        user = super().update(instance=instance, validated_data=validated_data)
+        user = super().update(instance, validated_data)
         if password:
             # If user specified a password to update password.
             user.set_password(password)
@@ -47,6 +47,7 @@ class AuthTokenSerializer(serializers.Serializer):
         """Validate and authenticate the user."""
         email = attrs.get("email")
         password = attrs.get("password")
+        print(attrs)
         user = authenticate(
             request=self.context.get("request"),
             username=email,
