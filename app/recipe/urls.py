@@ -14,5 +14,7 @@ router = DefaultRouter()
 # ModelViewSet - support all methods for manaing the model -
 # Update, Create, Delete, Read
 router.register("recipes", views.RecipeViewSet)
+router.register("tags", views.TagViewSet)
+router.register("ingredients", views.IngredientViewSet)
 app_name = "recipe"
 urlpatterns = [path("", include(router.urls))]
