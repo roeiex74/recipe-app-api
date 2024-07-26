@@ -5,6 +5,16 @@ from django.contrib.auth.models import (
     BaseUserManager,
 )
 from django.conf import settings
+import uuid
+import os
+
+
+def recipe_image_file_path(instance, i_file_name):
+    "Generate file path for new recipe image."
+    # extract the file_name extenstion
+    ext = os.path.splitext(i_file_name)[1]
+    file_name = f"{uuid.uuid4()}{ext}"
+    return os.path.join("uploads", "recipe", file_name)
 
 
 # Create your models here.
@@ -59,6 +69,8 @@ class Recipe(models.Model):
     link = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField("Tag")
     ingredients = models.ManyToManyField("Ingredient")
+    # in upload_to we specify a function that allows us to generate a PathName
+    image = models.ImageField(null=True, upload_to=recipe_image_file_path)
 
     def __str__(self) -> str:
         return self.title
