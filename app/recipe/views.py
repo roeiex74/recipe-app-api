@@ -30,7 +30,8 @@ from recipe import serializers
             OpenApiParameter(
                 "ingredients",
                 OpenApiTypes.STR,
-                description="comma seperated list of ingredient ID's to filter",
+                description="comma seperated list of ingredient ID's \
+                to filter",
             ),
         ]
     )
